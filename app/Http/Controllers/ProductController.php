@@ -14,7 +14,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        // Create instance of the Product model.
+        $products = Product::all();
+        // Return the view with the products. 
+        return view('products.index', compact('products'));
+        // compact() return data to the vire index
     }
 
     /**

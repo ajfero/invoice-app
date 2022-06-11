@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
+Route::middleware(['auth:sanctum',
+    config('jetstream.auth_session'),'verified'])->group(function () {
+        Route::get('/dashboard', function () {return view('dashboard');
     })->name('dashboard');
+});
+
+// Create a new route group for the Products.
+// Aplicate the middelware "auth" to all the routes in the group.
+// This route group will contain controllers for the products.
+// Also create RESOURSE for routes in the group.
+Route::middleware('auth')->group(function () {
+        Route::resource('/products', ProductController::class);
 });
