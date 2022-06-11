@@ -24,6 +24,13 @@
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
+    {{-- Si nos preguntamos como importa esta libreria la vista de Dashboard 
+    Necesitamos ver la ruta 
+    C:\laragon\www\invoicesapp\resources\views\dashboard.blade.php
+    y buscar la linea que dice: @extends('layouts.app')
+    --}}
+    
+{{-- aplicamos el header dentro del body que esta en dasboard --}}
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -32,7 +39,7 @@
                     </div>
                 </header>
             @endif
-
+{{-- Aplicamos el slot dentro de dasboard --}}
             <!-- Page Content -->
             <main>
                 {{ $slot }}

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Buyer extends Model
 {
     use HasFactory;
+    protected $fillable = ['nif', 'name','email'];
 }
