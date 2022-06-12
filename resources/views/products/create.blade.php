@@ -49,12 +49,22 @@
                                 <form class="grid gap-8 grid-cols-1" 
                                     @if($product->id) 
                                         action="{{ route('products.update', ['product'=>$product->id]) }}" 
-                                    @else action="{{ route('products.store', ['product'=>$product->id]) }}" 
-                                    @endif enctype="multipart/form-data" method="POST">
+                                    @else 
+                                        action="{{ route('products.store', ['product'=>$product->id]) }}" 
+                                    @endif 
+
+                                    enctype="multipart/form-data" method="POST">
+                                    @if ($product->id)
+                                        {{ method_field('PUT') }}
+                                        {{-- @method('PUT') --}} <!-- Comentamos para probar luego si funciona sin los corchetes -->
+                                    @endif
+
                                     @csrf
                                     <!-- Usamo el formulario para crear o actualizar un producto
-                                        Si el 
-                                        Si el id del product coincide con el id, entonces definimos un Update definimos que la variable product pasa a tener el valor del id 
+                                        Si el id del product no existe, definiremos que es un nuevo producto
+                                        Dependiendo del tipo de url con el que se esta llegando definiremos si actualizar o crear un nuevo producto
+                                        
+                                        Condicionamos que si el formulario tiene un "id" cambiaremos el methodo a PUT.
                                     -->
                                     <!-- Stlye of Imputs Box  -->
                                         <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
@@ -93,6 +103,7 @@
                                                 <!-- Img Input -->
                                                     <div class="col-span-6 sm:col-span-4">
                                                         <div>
+                                                            {{-- Definomos que si el producto tiene un "id" debe tener una imagen por lo cual vamos a mostrarla --}}
                                                             @if($product->id)
                                                                 <img class="w-8 h-8 rounded-full" src="{{ asset($product->img_url) }}"/>    
                                                             @endif
@@ -242,8 +253,7 @@
                                                             </script>
                                                     </div>
                                             </div>
-                                        </div>
-                                    
+                                        </div>                   
                                     <!-- New Box for Buttoms -->
                                         <div class="flex items-center justify-end px-4 py-3 bg-gray-150 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
                                             <!-- Buttom Back -->

@@ -75,7 +75,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        // Usamo el mismo formulario y usamos el mismo id del producto que queremos editar segun sea el id
+        return view('products.create', compact('product'));
     }
 
     /**
