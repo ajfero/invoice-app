@@ -52,8 +52,8 @@ class ProductController extends Controller
             // Esto nos devolvera la ruta de la imagen para ser usada en la base de datos
         }
         Product::create($data); // Creamos el producto con los datos de la variable data
-        return redirect()->route('products.index')->with('success', 'Product created successfully'); // Redirecionamos a la ruta products.index con un mensaje de exito
-        // return redirect()->route('products.index')->with(['status'=>'success', 'message'=> 'Product created successfully']); // Redirecionamos a la ruta products.index con un mensaje de exito
+        // return redirect()->route('products.index')->with('success', 'Product created successfully'); // Redirecionamos a la ruta products.index con un mensaje de exito
+        return redirect()->route('products.index')->with(['status'=>'success', 'color'=>'green' , 'message'=> 'Product created successfully']); // Redirecionamos a la ruta products.index con un mensaje de exito
     }
 
     /**
