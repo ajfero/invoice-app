@@ -3,7 +3,7 @@
     <!-- Nav Bar -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+           Create {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
@@ -51,7 +51,6 @@
                                 <!-- Usamo el formulario para crear o actualizar un producto
                                     Si el id del product no existe, definiremos que es un nuevo producto
                                     Dependiendo del tipo de url con el que se esta llegando definiremos si actualizar o crear un nuevo producto
-                                    
                                     Condicionamos que si el formulario tiene un "id" cambiaremos el methodo a PUT.
                                 -->
                                 <form id="miFormulario" wire:submit.prevent="updateProfileInformation"
