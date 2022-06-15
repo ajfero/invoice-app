@@ -3,119 +3,126 @@
     <!-- Nav Bar -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Create Buyer Dashboard') }}
         </h2>
     </x-slot>
 
     <!-- Box -->
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-10 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-            <div class="overflow-x-auto">
-                <div class="min-w-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
-                    <div wire:id="zofCsSIIav8OAYfxW38a" class="md:grid md:grid-cols-3 md:gap-6">
-                            
-                        <!-- Text -->
-                        <div class="md:col-span-1 flex justify-between">
-                            <div class="px-4 sm:px-4"><br>
-
-                                <h1 class="text-lg font-medium text-gray-900">Create new product - Information</h1>
-                                <!-- Title -->
-                                <p class="mt-1 text-sm text-gray-600">
-                                    Insert Products into your database information (Name, Price and Image).
-                                </p>
-                                <!-- Name -->
-                                <p class="mt-1 text-sm text-gray-600">
-                                    <br>
-                                    <b> Name;</b><br>
-                                    Insert the <i>name</i> of Product in this case any name is Valid! just remember one thing, the data Type for names of products are <i> string</i>.
-                                </p>
-                                <!-- Price -->
-                                <p class="mt-1 text-sm text-gray-600">
-                                    <br>
-                                    <b> Price;</b><br>
-                                    Put the <i>price</i> for you Product but remember don't be expensive! the data Type for products prices are <i> numeric</i>.
-                                </p>
-                                <!-- Image -->
-                                <p class="mt-1 text-sm text-gray-600">
-                                    <br>
-                                    <b> Image;</b><br>
-                                    Select or Drag & Drop your <i>Image</i> of Product, in the box area. the data Type for Images are <i> PNG, JPG, GIF </i> up to 1024KB.
-                                </p>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-10 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="overflow-x-auto">
+                    <div class="min-w-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
+                        <div wire:id="zofCsSIIav8OAYfxW38a" class="md:grid md:grid-cols-3 md:gap-6">
                                 
+                            <!-- Text -->
+                            <div class="md:col-span-1 flex justify-between">
+                                <div class="px-4 sm:px-4"><br>
+
+                                    <h1 class="text-lg font-medium text-gray-900">Create new buyer - Information</h1>
+                                    <!-- Title -->
+                                    <p class="mt-1 text-sm text-gray-600">
+                                        Insert buyers into your database information (Name, Price and Image).
+                                    </p>
+                                    <!-- Name -->
+                                    <p class="mt-1 text-sm text-gray-600">
+                                        <br>
+                                        <b> Name;</b><br>
+                                        Insert the <i>name</i> of buyer in this case any name is Valid! just remember one thing, the data Type for names of buyers are <i> string</i>.
+                                    </p>
+                                    <!-- Document -->
+                                    <p class="mt-1 text-sm text-gray-600">
+                                        <br>
+                                        <b> Document;</b><br>
+                                        Put the <i>Document</i> for you buyer but remember don't be expensive! the data Type for buyers prices are <i> numeric</i>.
+                                    </p>
+                                    <!-- Image -->
+                                    <p class="mt-1 text-sm text-gray-600">
+                                        <br>
+                                        <b> Image;</b><br>
+                                        Select or Drag & Drop your <i>Image</i> of buyer, in the box area. the data Type for Images are <i> PNG, JPG, GIF </i> up to 1024KB.
+                                    </p>
+                                    
+                                </div>
                             </div>
 
-                        </div>
+                            <!-- Formo Create Buyer  -->
+                            <div class="mt-5 md:mt-0 md:col-span-2">
+                                <form id="miFormulario" wire:submit.prevent="updateProfileInformation"
+                                    @if($buyer->id) 
+                                        action="{{ route('buyers.update', ['buyer'=>$buyer->id]) }}" 
+                                    @else 
+                                        action="{{ route('buyers.store', ['buyer'=>$buyer->id]) }}" 
+                                    @endif 
 
-                        <div class="mt-5 md:mt-0 md:col-span-2">
-                            <!-- Usamo el formulario para crear o actualizar un producto
-                                Si el id del product no existe, definiremos que es un nuevo producto
-                                Dependiendo del tipo de url con el que se esta llegando definiremos si actualizar o crear un nuevo producto
-                                Condicionamos que si el formulario tiene un "id" cambiaremos el methodo a PUT.
-                            -->
-                            <form id="miFormulario" wire:submit.prevent="updateProfileInformation"
-                                @if($product->id) 
-                                    action="{{ route('products.update', ['product'=>$product->id]) }}" 
-                                @else 
-                                    action="{{ route('products.store', ['product'=>$product->id]) }}" 
-                                @endif 
+                                    enctype="multipart/form-data" method="POST">
+                                    
+                                    @if ($buyer->id)
+                                        {{ method_field('PUT') }}
+                                        {{-- @method('PUT') --}} <!-- Comentamos para probar luego si funciona sin los corchetes -->
+                                    @endif
+                                    @csrf
 
-                                enctype="multipart/form-data" method="POST">
-                                
-                                @if ($product->id)
-                                    {{ method_field('PUT') }}
-                                    {{-- @method('PUT') --}} <!-- Comentamos para probar luego si funciona sin los corchetes -->
-                                @endif
-                                @csrf
+                                    <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+                                        <div class="grid grid-cols-3 gap-6">
 
-                                <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
-                                    <div class="grid grid-cols-3 gap-6">
-
-                                        <!-- Name -->
-                                        <div class="col-span-6 sm:col-span-4">
-                                            <div>
-                                                <label class="block font-medium text-sm text-gray-700" for="name">
-                                                    Name
-                                                </label>
-                                                <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.defer="state.name" autocomplete="name">
+                                            <!-- Name -->
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <div>
+                                                    <label class="block font-medium text-sm text-gray-350" for="name">
+                                                        Full Name
+                                                    </label>
+                                                    <input type="text" name="name" id="name" value="{{ old('name', $buyer->name) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full " wire:model.defer="state.name" autocomplete="name">
+                                                </div>
+                                                @error('name')
+                                                <span class=" text-sm text-red-600" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
-                                            @error('name')
-                                            <span class=" text-sm text-red-600" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <!-- Price -->
-                                        <div class="col-span-6 sm:col-span-4">
-                                            <div>
-                                                <label class="block font-medium text-sm text-gray-700" for="price">
-                                                    Price
-                                                </label>
-                                                <input type="number" name="price" id="price" value="{{ old('price', $product->price) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+
+                                            <!-- Document -->
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <div>
+                                                    <label class="block font-medium text-sm text-gray-700" for="price">
+                                                        Document
+                                                    </label>
+                                                    <input type="text" name="nif" id="nif" value="{{ old('price', $buyer->nif) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                                                </div>
+                                                @error('nif')
+                                                <span class=" text-sm text-red-600" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
-                                            @error('price')
-                                            <span class=" text-sm text-red-600" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <!-- Image -->
-                                        <div class="flexcol-span-6 sm:col-span-4">
-                                                {{-- Definomos que si el producto tiene un "id" debe tener una imagen por lo cual vamos a mostrarla --}}
-                                                <label class="block font-medium text-sm text-gray-700" for="image">
-                                                    Image
-                                                </label>
-                                                @if($product->id)
-                                                    <div class="pb-4" >
-                                                        <img class="inline w-16 h-16 rounded-full" src="{{ asset($product->img_url) }}" />
-                                                    
-                                                        <button type="submit" 
-                                                        class="inline-flex items-center ml-2 px-2 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
-                                                        Update
-                                                        </button>
-                                                    </div>
-                                                @endif
-                                                {{-- @else --}}
+
+                                            <!-- Email -->
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <div>
+                                                    <label class="block font-medium text-sm text-gray-700" for="price">
+                                                        Email
+                                                    </label>
+                                                    <input type="email" name="email" id="email" value="{{ old('email', $buyer->email) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                                                </div>
+                                                @error('price')
+                                                <span class=" text-sm text-red-600" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+
+                                            <!-- Photo -->
+                                            <div class="flexcol-span-6 sm:col-span-4">
+                                                <div>
+                                                    {{-- Definomos que si el buyero tiene un "id" debe tener una imagen por lo cual vamos a mostrarla --}}
+                                                    <label class="block font-medium text-sm text-gray-700" for="image">
+                                                        Photo
+                                                    </label>
+                                                    @if($buyer->id)
+                                                        <img class="w-8 h-8 rounded-full" src="{{ asset($buyer->img_url) }}" />
+                                                    @endif
+                                                    <br>
+                                                </div>
                                                 <!-- Stile Drag & Drop  -->
                                                 <div class="bg-white p7 rounded mx-auto mt-1">
                                                     <div x-data="dataFileDnD()" class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
@@ -249,45 +256,44 @@
                                                         };
                                                     }
                                                 </script>
-                                                {{-- @endif --}}
-                                        </div>
+                                            </div>
 
-                                    </div>
-                                </div>
-                                <!-- New Box for Buttoms -->
-                                <div class="flex items-center justify-end px-4 py-3 bg-gray-150 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-
-                                    <!-- Buttom Back -->
-                                    <div class="py-1">
-                                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                                            <a href="{{route('products.index')}}" 
-                                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white 
-                                                            uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300
-                                                            disabled:opacity-25 transition ml-4">
-                                                {{-- Icon <- --}}
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="1 1 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" /> </svg>
-                                                {{__('Back')}}
-                                            </a>
                                         </div>
                                     </div>
+                                    <!-- New Box for Buttoms -->
+                                    <div class="flex items-center justify-end px-4 py-3 bg-gray-150 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
 
-                                    <!-- Buttom Save -->
-                                    <button type="submit" 
-                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
-                                        Save
-                                    </button>
+                                        <!-- Buttom Back -->
+                                        <div class="py-1">
+                                            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                                <a href="{{route('buyers.index')}}" 
+                                                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white 
+                                                                uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300
+                                                                disabled:opacity-25 transition ml-4">
+                                                    {{-- Icon <- --}}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="1 1 24 24" stroke="currentColor" stroke-width="2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" /> </svg>
+                                                    {{__('Back')}}
+                                                </a>
+                                            </div>
+                                        </div>
 
-                                </div>
-                            </form>
-                        </div>
+                                        <!-- Buttom Save -->
+                                        <button type="submit" 
+                                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
+                                            Save
+                                        </button>
 
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div> <!-- End of Main Content -->
+                        {{-- Shadow Box --}}
+                        <div class="bg-white shadow-md rounded my-6"> </div>
                     </div>
-                    {{-- Shadow Box --}}
-                    <div class="bg-white shadow-md rounded my-6"> </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </x-app-layout>

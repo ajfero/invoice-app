@@ -2,16 +2,16 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-             {{ __('Products Dashboard') }}
+             {{ __('Buyers Dashboard') }}
         </h2>
     </x-slot>
 
     <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
         
-        {{-- Button New Product --}}
+        {{-- Button New Buyer --}}
         <div class=" inline-flex items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('products.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
-                {{__('New Product')}}
+            <a href="{{ route('buyers.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
+                {{__('New Buyer')}}
             </a>
         </div>
 
@@ -33,9 +33,9 @@
                         </div>
                         <!-- X -->
                         <p class="flex cursor-pointer">
-                        <form method="POST" action="{{ route('products.index') }}">
+                        <form method="GET" action="{{ route('buyers.index') }}">
                             @csrf
-                            <a href="{{ route('products.index') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <a href="{{ route('buyers.index') }}" onclick="event.preventDefault(); this.closest('form').submit();">
                                 <svg class="text-indigo-700 text-xl" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M685.4 354.8c0-4.4-3.6-8-8-8l-66 .3L512 465.6l-99.3-118.4-66.1-.3c-4.4 0-8 3.5-8 8 0 1.9.7 3.7 1.9 5.2l130.1 155L340.5 670a8.32 8.32 0 0 0-1.9 5.2c0 4.4 3.6 8 8 8l66.1-.3L512 564.4l99.3 118.4 66 .3c4.4 0 8-3.5 8-8 0-1.9-.7-3.7-1.9-5.2L553.5 515l130.1-155c1.2-1.4 1.8-3.3 1.8-5.2z"></path>
                                     <path d="M512 65C264.6 65 64 265.6 64 513s200.6 448 448 448 448-200.6 448-448S759.4 65 512 65zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
@@ -54,7 +54,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
-            <!-- Division for Table Products -->
+            <!-- Division for Table Buyers -->
             <div class=" bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="bg-white shadow-md rounded">
                     <table class="min-w-max w-full table-auto">
@@ -62,9 +62,9 @@
                         <!-- Titles Table -->
                         <thead>
                             <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                <th class="py-3 px-6 text-left">ID</th>
-                                <th class="py-3 px-6 text-left">PRODUCT NAME</th>
-                                <th class="py-3 px-6 text-center">PRICE</th>
+                                <th class="py-3 px-6 text-left">#ID</th>
+                                <th class="py-3 px-6 text-center">BUYER</th>
+                                <th class="py-3 px-6 text-center">DOCUMENT</th>
                                 <th class="py-3 px-6 text-center">CREATE AT</th>
                                 <th class="py-3 px-6 text-center">ACTIONS</th>
                             </tr>
@@ -72,37 +72,39 @@
 
                         <!-- Body -->
                         <tbody class="text-gray-600 text-sm font-light">
-                            @foreach ($products as $product)
+                            @foreach ($buyers as $buyer)
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
 
                                 <!-- id -->
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="mr-2">
-                                        <span class="font-medium">{{ str_pad($product->id, 2 , 0, STR_PAD_LEFT)  }}</span>
+                                        {{--   Determinando que sera en la parte izquierda  --}}
+                                        <span class="font-medium">{{ str_pad($buyer->id, 2 , 0, STR_PAD_LEFT)  }}</span>
                                     </div>
                                 </td>
 
-                                <!-- name -->
+                                <!-- Buyer -->
                                 <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
                                         <div class="mr-2">
-                                            {{-- Nos traermos una imagen segun la url de la base de datos --}}
-                                            <img class="w-8 h-8 rounded-full" src="{{ asset($product->img_url) }}" />
-                                            {{-- <img class="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg"/> --}}
+                                            {{-- <img class="w-8 h-8 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg"/> --}}
+                                            <img class="w-8 h-8 rounded-full" src="{{ asset($buyer->img_url) }}" />
                                         </div>
-                                        <span>{{ $product->name }}</span>
+                                        <div>
+                                            <p class="font-semibold text-black">{{ $buyer->name }}</p>
+                                            {{-- <p class="text-xs text-gray-600">Backend Developer</p> --}}
+                                            <p class="text-xs text-gray-600">{{ $buyer->email }}</p>
+                                        </div>
                                     </div>
                                 </td>
-
-                                <!-- price -->
+                                <!-- Document -->
                                 <td class="py-3 px-6 text-center">
-                                    <span>{{ $product->price }}</span>
+                                    <span>{{ $buyer->nif }}</span>
                                 </td>
 
                                 <!-- create_at -->
                                 <td class="py-3 px-6 text-center">
-                                    <span>{{ $product->created_at }}</span>
+                                    <span>{{ $buyer->created_at }}</span>
                                 </td>
 
                                 <!-- Actions -->
@@ -112,13 +114,9 @@
                                         <!-- Edit -->
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <!-- En este caso englobaremos el boton de editar con la etiqueta a que conbertira la imagen en un link
-                                                            Tambien vamos a decir que product sera igual al id de la variable product -->
-                                            <a href="{{ route('products.edit', ['product'=> $product->id]) }}">
-                                                <!-- Para entedenr como obtenemos el "id" y se lo asiganmos al producto es porque nuestro Resource Routes of Products create the route 
-                                                            using thir structure:
-                                                            GET|HEAD        products/{product}/edit .......................... products.edit › ProductController@edit
-                                                            Cuando de foreachre recorrare todos los productos y le asignaremos una ruta de editar a cada uno de ellos. 
-                                                        -->
+                                                            Tambien vamos a decir que buyer sera igual al id de la variable buyer -->
+                                            <a href="{{ route('buyers.edit', ['buyer'=> $buyer->id]) }}">
+
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                 </svg>
@@ -127,12 +125,12 @@
 
                                         <!-- Eliminar -->
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <!-- The Route: products/{product} ......................... products.destroy › ProductController@destroy  -->
-                                            <form method="POST" action="{{ route('products.destroy', ['product'=> $product->id]) }}">
+                                            <!-- The Route: buyers/{buyer} ......................... buyers.destroy › buyerController@destroy  -->
+                                            <form method="POST" action="{{ route('buyers.destroy', ['buyer'=> $buyer->id]) }}">
                                                 @csrf
                                                 {{  method_field("DELETE") }}
                                             
-                                                <a href="{{ route('products.destroy', ['product'=> $product->id]) }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                <a href="{{ route('buyers.destroy', ['buyer'=> $buyer->id]) }}" onclick="event.preventDefault(); this.closest('form').submit();">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
@@ -154,15 +152,3 @@
         </div>
     </div>
 </x-app-layout>
-
-
-
-    {{-- <form method="POST" action="{{ route('products.destroy', ['product'=>$product->id]) }}">
-        @csrf
-        {{ method_field("DELETE") }}
-        <a href="{{ route('products.destroy', ['product'=> $product->id]) }}" @click.prevent="$root.submit();  this.closest('form').submit();" >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-            </svg>
-        </a>
-    </form> --}}

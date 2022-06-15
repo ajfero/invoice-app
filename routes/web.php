@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BuyerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,8 @@ Route::middleware(['auth:sanctum',
 // Also create RESOURSE for routes in the group.
 Route::middleware('auth')->group(function () {
         Route::resource('/products', ProductController::class);
+});
+
+Route::middleware('auth')->group(function () {
+        Route::resource('/buyers', BuyerController::class);
 });
