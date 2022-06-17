@@ -10,7 +10,7 @@
         
         {{-- Button New Buyer --}}
         <div class=" inline-flex items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('buyers.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
+            <a href="{{ route('buyers.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
                 {{__('New Buyer')}}
             </a>
         </div>

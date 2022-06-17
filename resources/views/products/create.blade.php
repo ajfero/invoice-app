@@ -108,11 +108,13 @@
                                                 @if($product->id)
                                                     <div class="pb-4" >
                                                         <img class="inline w-16 h-16 rounded-full" src="{{ asset($product->img_url) }}" />
-                                                    
-                                                        <button type="submit" 
-                                                        class="inline-flex items-center ml-2 px-2 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
-                                                        Update
-                                                        </button>
+                                                        <input type="file" 
+                                                        class="inline-flex items-center ml-2 px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
+                                                        wire:loading.attr="disabled" wire:target="image"
+                                                        id="image" name="image" accept="*"
+                                                        @change="addFiles($event)" 
+                                                        title=""
+                                                        />
                                                     </div>
                                                 @endif
                                                 {{-- @else --}}
@@ -274,7 +276,7 @@
 
                                     <!-- Buttom Save -->
                                     <button type="submit" 
-                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
+                                        class="inline-flex items-center px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
                                         Save
                                     </button>
 
