@@ -106,7 +106,7 @@ class BuyerController extends Controller
             $buyer->delete();
             $result = ['status' => 'success', 'color' => 'green', 'message' => 'Deleted successfully'];
         } catch (\Exception $e) {
-            $result = ['status' => 'error', 'color' => 'red', 'message' => 'Buyer cannot be delete'];
+            $result = ['status' => 'error', 'message' => 'Buyer cannot be delete'];
         }
 
         return redirect()->route('buyers.index')->with($result);
