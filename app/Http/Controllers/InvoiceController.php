@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buyer;
 use App\Models\Invoice;
+use App\Models\InvoiceDetail;
+use App\Http\Requests\InvoiceStoreRequest;
+
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +19,12 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        // $invoices = Invoice::all();
+        $buyers = Buyer::all();
+        // return view('invoices.index', compact('invoices'));
+        $invoices = Invoice::with('buyer')->paginate(5);
+        return view('invoices.index', compact('invoices', 'buyers'));
+
     }
 
     /**
@@ -24,7 +34,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        //
+        $invoice = new invoice();
+        $buyers= Buyer::all();
+        return view('invoices.create', compact('invoice', 'buyers'));
     }
 
     /**
@@ -33,11 +45,13 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InvoiceStoreRequest $request)
     {
-        //
+        $invoice = Invoice::create($request->validated());
+        return redirect()->route('invoices.add_products', ['invoice' => $invoice->id]); // Redirecionamos a la ruta invoices.index con un mensaje de exito    }
+        // return redirect()->route('invoices.add_products', ['invoice' => $invoice->id])->with(['status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito    }
+        // return redirect()->route('invoices.add_products')->with(["invoice" => $invoice->id, 'status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito    }
     }
-
     /**
      * Display the specified resource.
      *
@@ -57,7 +71,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        return view('invoices.create', compact('invoice'));
     }
 
     /**
@@ -69,7 +83,10 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $data = $request->validate();
+        $invoice->fill($data);
+        $invoice->save();
+        return redirect()->route('invoices.index')->with(['status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito
     }
 
     /**
@@ -80,6 +97,15 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        //
+        try {
+            $invoice->delete();
+            $result = ['status' => 'success', 'color' => 'green', 'message' => 'Deleted successfully'];
+        } catch (\Exception $e) {
+            $result = ['status' => 'error', 'color' => 'red', 'message' => 'Invoice cannot be delete'];
+        }
+
+        return redirect()->route('invoices.index')->with($result);
     }
+
 }
+
