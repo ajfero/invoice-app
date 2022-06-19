@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         // Create instance of the Product model.
-        $products = Product::all();
+        $products = Product::paginate(5);
         // Return the view with the products. 
         return view('products.index', compact('products'));
         // compact() return data to the vire index

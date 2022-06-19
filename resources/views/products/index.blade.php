@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-             {{ __('Products Dashboard') }}
+            {{ __('Products Dashboard') }}
         </h2>
     </x-slot>
 
@@ -148,6 +148,9 @@
                         </tbody>
                         
                     </table>
+                </div>
+                <div class="py-1 px-4 text-gray-600 text-xs leading-normal"  >
+                    {{ $products->links() }}
                 </div>
             </div>
 
