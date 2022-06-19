@@ -21,6 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/house', function () {
+    return "Hello World";
+});
+
 Route::middleware(['auth:sanctum',
     config('jetstream.auth_session'),'verified'])->group(function () {
         Route::get('/dashboard', function () {return view('dashboard');
@@ -36,14 +41,11 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/buyers', BuyerController::class);
 
-
         Route::resource('/invoices', InvoiceController::class);
-        
-        Route::post('/invoices/complete/{invoice}', [InvoiceController::class, 'completeSend'])->name('invoices.complete');
 
-        
-        Route::resource('/invoice-details', InvoiceDetailController::class);
-        
         Route::get('/invoices/add-product/{invoice}/', [InvoiceDetailController::class, 'create'])->name('invoices.add_products');
 
+        Route::post('/invoices/{invoice}/complete/', [InvoiceController::class, 'completeSend'])->name('invoices.complete');
+
+        Route::resource('/invoice-details', InvoicesDetailController::class);
 });
