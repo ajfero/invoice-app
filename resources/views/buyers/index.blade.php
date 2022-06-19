@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <!-- Dashboard -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
              {{ __('Buyers Dashboard') }}
@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-        
+
         {{-- Button New Buyer --}}
         <div class=" inline-flex items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
             <a href="{{ route('buyers.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
@@ -53,12 +53,12 @@
     <!-- Box -->
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <!-- Division for Table Buyers -->
             <div class=" bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="bg-white shadow-md rounded">
                     <table class="min-w-max w-full table-auto">
-                        
+
                         <!-- Titles Table -->
                         <thead>
                             <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -97,6 +97,7 @@
                                         </div>
                                     </div>
                                 </td>
+
                                 <!-- Document -->
                                 <td class="py-3 px-6 text-center">
                                     <span>{{ $buyer->nif }}</span>
@@ -129,7 +130,7 @@
                                             <form method="POST" action="{{ route('buyers.destroy', ['buyer'=> $buyer->id]) }}">
                                                 @csrf
                                                 {{  method_field("DELETE") }}
-                                            
+
                                                 <a href="{{ route('buyers.destroy', ['buyer'=> $buyer->id]) }}" onclick="event.preventDefault(); this.closest('form').submit();">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -137,15 +138,18 @@
                                                 </a>
                                             </form>
                                         </div>
-                                        
+
                                     </div>
                                 </td>
 
                             </tr>
                             @endforeach
                         </tbody>
-                        
+
                     </table>
+                    <div class="py-1 px-4 text-gray-600 text-xs leading-normal"  >
+                        {{ $buyers->links() }}
+                    </div>
                 </div>
             </div>
 

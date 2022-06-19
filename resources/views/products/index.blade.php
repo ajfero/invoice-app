@@ -50,7 +50,7 @@
 
     </div>
 
-    <!-- Box -->
+    <!-- Table Products -->
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
@@ -66,7 +66,7 @@
                                 <th class="py-3 px-6 text-left">PRODUCT NAME</th>
                                 <th class="py-3 px-6 text-center">PRICE</th>
                                 <th class="py-3 px-6 text-center">CREATE AT</th>
-                                <th class="py-3 px-6 text-center">ACTIONS</th>
+                                <th class="py-3 px-6 text-center">ACTION</th>
                             </tr>
                         </thead>
 
@@ -74,7 +74,6 @@
                         <tbody class="text-gray-600 text-sm font-light">
                             @foreach ($products as $product)
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
-
                                 <!-- id -->
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
@@ -142,7 +141,6 @@
                                         
                                     </div>
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>
@@ -160,7 +158,9 @@
 
 
 
-    {{-- <form method="POST" action="{{ route('products.destroy', ['product'=>$product->id]) }}">
+    {{-- 
+        Verifcar @click.prevent
+        <form method="POST" action="{{ route('products.destroy', ['product'=>$product->id]) }}">
         @csrf
         {{ method_field("DELETE") }}
         <a href="{{ route('products.destroy', ['product'=> $product->id]) }}" @click.prevent="$root.submit();  this.closest('form').submit();" >

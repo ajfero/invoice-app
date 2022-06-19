@@ -7,19 +7,19 @@
         </h2>
     </x-slot>
 
-    <!-- Box -->
+    <!-- Box Create -->
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-10 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="overflow-x-auto">
                 <div class="min-w-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
                     <div wire:id="zofCsSIIav8OAYfxW38a" class="md:grid md:grid-cols-3 md:gap-6">
-                            
+
                         <!-- Text -->
                         <div class="md:col-span-1 flex justify-between">
                             <div class="px-4 sm:px-4"><br>
-
                                 <h1 class="text-lg font-medium text-gray-900">Create new product - Information</h1>
+
                                 <!-- Title -->
                                 <p class="mt-1 text-sm text-gray-600">
                                     Insert Products into your database information (Name, Price and Image).
@@ -42,26 +42,25 @@
                                     <b> Image;</b><br>
                                     Select or Drag & Drop your <i>Image</i> of Product, in the box area. the data Type for Images are <i> PNG, JPG, GIF </i> up to 1024KB.
                                 </p>
-                                
-                            </div>
 
+                            </div>
                         </div>
 
-                        <div class="mt-5 md:mt-0 md:col-span-2">
-                            <!-- Usamo el formulario para crear o actualizar un producto
+                        <!-- Form -->
+                                <!-- Usamo el formulario para crear o actualizar un producto
                                 Si el id del product no existe, definiremos que es un nuevo producto
                                 Dependiendo del tipo de url con el que se esta llegando definiremos si actualizar o crear un nuevo producto
                                 Condicionamos que si el formulario tiene un "id" cambiaremos el methodo a PUT.
-                            -->
-                            <form id="miFormulario" wire:submit.prevent="updateProfileInformation"
-                                @if($product->id) 
-                                    action="{{ route('products.update', ['product'=>$product->id]) }}" 
-                                @else 
-                                    action="{{ route('products.store', ['product'=>$product->id]) }}" 
-                                @endif 
+                                -->
+                        <div class="mt-5 md:mt-0 md:col-span-2">
+                            <form id="CreateProduct" wire:submit.prevent="createProduct"
+                                @if($product->id)
+                                    action="{{ route('products.update', ['product'=>$product->id]) }}"
+                                @else
+                                    action="{{ route('products.store', ['product'=>$product->id]) }}"
+                                @endif
+                                    enctype="multipart/form-data" method="POST">
 
-                                enctype="multipart/form-data" method="POST">
-                                
                                 @if ($product->id)
                                     {{ method_field('PUT') }}
                                     {{-- @method('PUT') --}} <!-- Comentamos para probar luego si funciona sin los corchetes -->
@@ -70,7 +69,6 @@
 
                                 <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                                     <div class="grid grid-cols-3 gap-6">
-
                                         <!-- Name -->
                                         <div class="col-span-6 sm:col-span-4">
                                             <div>
@@ -85,6 +83,7 @@
                                             </span>
                                             @enderror
                                         </div>
+
                                         <!-- Price -->
                                         <div class="col-span-6 sm:col-span-4">
                                             <div>
@@ -99,6 +98,7 @@
                                             </span>
                                             @enderror
                                         </div>
+
                                         <!-- Image -->
                                         <div class="flexcol-span-6 sm:col-span-4">
                                                 {{-- Definomos que si el producto tiene un "id" debe tener una imagen por lo cual vamos a mostrarla --}}
@@ -108,11 +108,11 @@
                                                 @if($product->id)
                                                     <div class="pb-4" >
                                                         <img class="inline w-16 h-16 rounded-full" src="{{ asset($product->img_url) }}" />
-                                                        <input type="file" 
+                                                        <input type="file"
                                                         class="inline-flex items-center ml-2 px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
                                                         wire:loading.attr="disabled" wire:target="image"
-                                                        id="image" name="image" accept="*"
-                                                        @change="addFiles($event)" 
+                                                        id="changeImage" name="image" accept="*"
+                                                        @change="addFiles($event)"
                                                         title=""
                                                         />
                                                     </div>
@@ -121,14 +121,14 @@
                                                 <!-- Stile Drag & Drop  -->
                                                 <div class="bg-white p7 rounded mx-auto mt-1">
                                                     <div x-data="dataFileDnD()" class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
-                                                        <div x-ref="dnd" 
+                                                        <div x-ref="dnd"
                                                             class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer mt-1">
-                                                            <input id="image" name="image" accept="*" 
-                                                                type="file" multiple class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer" 
-                                                                @change="addFiles($event)" 
-                                                                @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');" 
-                                                                @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" 
-                                                                @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" 
+                                                            <input id="image" name="image" accept="*"
+                                                                type="file" multiple class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
+                                                                @change="addFiles($event)"
+                                                                @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');"
+                                                                @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
+                                                                @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
                                                                 title="" />
                                                             <div class="flex flex-col items-center justify-center py-10 text-center">
                                                                 <svg class="w-6 h-6 mr-1 text-current-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -142,16 +142,16 @@
                                                         <template x-if="files.length > 0">
                                                             <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-6" @drop.prevent="drop($event)" @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
                                                                 <template x-for="(_, index) in Array.from({ length: files.length })">
-                                                                    <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none" 
-                                                                        style="padding-top: 100%;" @dragstart="dragstart($event)" @dragend="fileDragging = null" 
+                                                                    <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none"
+                                                                        style="padding-top: 100%;" @dragstart="dragstart($event)" @dragend="fileDragging = null"
                                                                         :class="{'border-blue-600': fileDragging == index}" draggable="true" :data-index="index">
-                                                                        
+
                                                                         <button class="absolute top-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none" type="button" @click="remove(index)">
                                                                             <svg class="w-4 h-4 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                             </svg>
                                                                         </button>
-                                                                        
+
                                                                         {{-- <template x-if="files[index].type.includes('audio/')">
                                                                             <svg class="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
@@ -167,20 +167,20 @@
                                                                         <template x-if= " files[index]?.type || files[index]?.type.includes('image/')">
                                                                             <img class="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview" x-bind:src="loadFile(files[index])" />
                                                                         </template>
-                                                                        
+
                                                                         {{-- <template x-if="files[index].type.includes('video/')">
                                                                             <video class="absolute inset-0 object-cover w-full h-full border-4 border-white pointer-events-none preview">
                                                                                 <fileDragging x-bind:src="loadFile(files[index])" type="video/mp4">
                                                                             </video>
                                                                         </template> --}}
-                                                                        
+
                                                                         <div class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
                                                                             <span class="w-full font-bold text-gray-900 truncate" x-text="files[index]?.name">Loading</span>
                                                                             <span class="text-xs text-gray-900" x-text="humanFileSize(files[index]?.size)">...</span>
                                                                         </div>
-                                                                        
+
                                                                         <div class="absolute inset-0 z-40 transition-colors duration-300" @dragenter="dragenter($event)" @dragleave="fileDropping = null" :class="{'bg-blue-200 bg-opacity-80': fileDropping == index && fileDragging != index}">
-                                                                        
+
                                                                         </div>
                                                                     </div>
                                                                 </template>
@@ -188,98 +188,97 @@
                                                         </template>
                                                     </div>
                                                 </div>
-                                                <!-- Function -->
-                                                <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-                                                <script src="https://unpkg.com/create-file-list"></script>
-                                                <script>
-                                                    function dataFileDnD() {
-                                                        return {
-                                                            files: []
-                                                            , fileDragging: null
-                                                            , fileDropping: null
-                                                            , humanFileSize(size) {
-                                                                const i = Math.floor(Math.log(size) / Math.log(1024));
-                                                                return (
-                                                                    (size / Math.pow(1024, i)).toFixed(2) * 1 +
-                                                                    " " + ["B", "kB", "MB", "GB", "TB"][i]
-                                                                );
-                                                            }
-                                                            , remove(index) {
-                                                                let files = [...this.files];
-                                                                files.splice(index, 1);
-                                                                this.files = createFileList(files);
-                                                            }
-                                                            , drop(e) {
-                                                                let removed, add;
-                                                                let files = [...this.files];
 
-                                                                removed = files.splice(this.fileDragging, 1);
-                                                                files.splice(this.fileDropping, 0, ...removed);
+                                                    <!-- Function -->
+                                                    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+                                                    <script src="https://unpkg.com/create-file-list"></script>
+                                                    <script>
+                                                        function dataFileDnD() {
+                                                            return {
+                                                                files: []
+                                                                , fileDragging: null
+                                                                , fileDropping: null
+                                                                , humanFileSize(size) {
+                                                                    const i = Math.floor(Math.log(size) / Math.log(1024));
+                                                                    return (
+                                                                        (size / Math.pow(1024, i)).toFixed(2) * 1 +
+                                                                        " " + ["B", "kB", "MB", "GB", "TB"][i]
+                                                                    );
+                                                                }
+                                                                , remove(index) {
+                                                                    let files = [...this.files];
+                                                                    files.splice(index, 1);
+                                                                    this.files = createFileList(files);
+                                                                }
+                                                                , drop(e) {
+                                                                    let removed, add;
+                                                                    let files = [...this.files];
 
-                                                                this.files = createFileList(files);
+                                                                    removed = files.splice(this.fileDragging, 1);
+                                                                    files.splice(this.fileDropping, 0, ...removed);
 
-                                                                this.fileDropping = null;
-                                                                this.fileDragging = null;
-                                                            }
-                                                            , dragenter(e) {
-                                                                let targetElem = e.target.closest("[draggable]");
+                                                                    this.files = createFileList(files);
 
-                                                                this.fileDropping = targetElem.getAttribute("data-index");
-                                                            }
-                                                            , dragstart(e) {
-                                                                this.fileDragging = e.target
-                                                                    .closest("[draggable]")
-                                                                    .getAttribute("data-index");
-                                                                e.dataTransfer.effectAllowed = "move";
-                                                            }
-                                                            , loadFile(file) {
-                                                                const preview = document.querySelectorAll(".preview");
-                                                                const blobUrl = URL.createObjectURL(file);
+                                                                    this.fileDropping = null;
+                                                                    this.fileDragging = null;
+                                                                }
+                                                                , dragenter(e) {
+                                                                    let targetElem = e.target.closest("[draggable]");
 
-                                                                preview.forEach(elem => {
-                                                                    elem.onload = () => {
-                                                                        URL.revokeObjectURL(elem.src); // free memory
-                                                                    };
-                                                                });
+                                                                    this.fileDropping = targetElem.getAttribute("data-index");
+                                                                }
+                                                                , dragstart(e) {
+                                                                    this.fileDragging = e.target
+                                                                        .closest("[draggable]")
+                                                                        .getAttribute("data-index");
+                                                                    e.dataTransfer.effectAllowed = "move";
+                                                                }
+                                                                , loadFile(file) {
+                                                                    const preview = document.querySelectorAll(".preview");
+                                                                    const blobUrl = URL.createObjectURL(file);
 
-                                                                return blobUrl;
-                                                            }
-                                                            , addFiles(e) {
-                                                                const files = createFileList([...this.files], [...e.target.files]);
-                                                                this.files = files;
-                                                            }
-                                                        };
-                                                    }
-                                                </script>
+                                                                    preview.forEach(elem => {
+                                                                        elem.onload = () => {
+                                                                            URL.revokeObjectURL(elem.src); // free memory
+                                                                        };
+                                                                    });
+
+                                                                    return blobUrl;
+                                                                }
+                                                                , addFiles(e) {
+                                                                    const files = createFileList([...this.files], [...e.target.files]);
+                                                                    this.files = files;
+                                                                }
+                                                            };
+                                                        }
+                                                    </script>
                                                 {{-- @endif --}}
                                         </div>
-
                                     </div>
                                 </div>
+
                                 <!-- New Box for Buttoms -->
                                 <div class="flex items-center justify-end px-4 py-3 bg-gray-150 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-
                                     <!-- Buttom Back -->
                                     <div class="py-1">
                                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                                            <a href="{{route('products.index')}}" 
-                                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white 
+                                            <a href="{{route('products.index')}}"
+                                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white
                                                             uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300
                                                             disabled:opacity-25 transition ml-4">
                                                 {{-- Icon <- --}}
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="1 1 24 24" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" /> </svg>
-                                                {{__('Back')}}
+                                                    {{__('Back')}}
                                             </a>
                                         </div>
                                     </div>
 
                                     <!-- Buttom Save -->
-                                    <button type="submit" 
+                                    <button type="submit"
                                         class="inline-flex items-center px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
                                         Save
                                     </button>
-
                                 </div>
                             </form>
                         </div>

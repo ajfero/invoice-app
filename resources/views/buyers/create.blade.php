@@ -14,7 +14,7 @@
                 <div class="overflow-x-auto">
                     <div class="min-w-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
                         <div wire:id="zofCsSIIav8OAYfxW38a" class="md:grid md:grid-cols-3 md:gap-6">
-                                
+
                             <!-- Text -->
                             <div class="md:col-span-1 flex justify-between">
                                 <div class="px-4 sm:px-4"><br>
@@ -42,21 +42,21 @@
                                         <b> Image;</b><br>
                                         Select or Drag & Drop your <i>Image</i> of buyer, in the box area. the data Type for Images are <i> PNG, JPG, GIF </i> up to 1024KB.
                                     </p>
-                                    
+
                                 </div>
                             </div>
 
                             <!-- Formo Create Buyer  -->
                             <div class="mt-5 md:mt-0 md:col-span-2">
-                                <form id="miFormulario" wire:submit.prevent="updateProfileInformation"
-                                    @if($buyer->id) 
-                                        action="{{ route('buyers.update', ['buyer'=>$buyer->id]) }}" 
-                                    @else 
-                                        action="{{ route('buyers.store', ['buyer'=>$buyer->id]) }}" 
-                                    @endif 
+                                <form
+                                    @if($buyer->id)
+                                        action="{{ route('buyers.update', ['buyer'=>$buyer->id]) }}"
+                                    @else
+                                        action="{{ route('buyers.store', ['buyer'=>$buyer->id]) }}"
+                                    @endif
 
                                     enctype="multipart/form-data" method="POST">
-                                    
+
                                     @if ($buyer->id)
                                         {{ method_field('PUT') }}
                                         {{-- @method('PUT') --}} <!-- Comentamos para probar luego si funciona sin los corchetes -->
@@ -121,11 +121,11 @@
                                                     @if($buyer->id)
                                                     <div class="pb-4" >
                                                         <img class="inline w-16 h-16 rounded-full" src="{{ asset($buyer->img_url) }}" />
-                                                        <input type="file" 
+                                                        <input type="file"
                                                         class="inline-flex items-center ml-2 px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
                                                         wire:loading.attr="disabled" wire:target="image"
                                                         id="image" name="image" accept="*"
-                                                        @change="addFiles($event)" 
+                                                        @change="addFiles($event)"
                                                         title=""
                                                         />
                                                     </div>
@@ -135,14 +135,14 @@
                                                 <!-- Stile Drag & Drop  -->
                                                 <div class="bg-white p7 rounded mx-auto mt-1">
                                                     <div x-data="dataFileDnD()" class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
-                                                        <div x-ref="dnd" 
+                                                        <div x-ref="dnd"
                                                             class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer mt-1">
-                                                            <input id="image" name="image" accept="*" 
-                                                                type="file" multiple class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer" 
-                                                                @change="addFiles($event)" 
-                                                                @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');" 
-                                                                @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" 
-                                                                @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');" 
+                                                            <input id="image" name="image" accept="*"
+                                                                type="file" multiple class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
+                                                                @change="addFiles($event)"
+                                                                @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');"
+                                                                @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
+                                                                @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
                                                                 title="" />
                                                             <div class="flex flex-col items-center justify-center py-10 text-center">
                                                                 <svg class="w-6 h-6 mr-1 text-current-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -156,16 +156,16 @@
                                                         <template x-if="files.length > 0">
                                                             <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-6" @drop.prevent="drop($event)" @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
                                                                 <template x-for="(_, index) in Array.from({ length: files.length })">
-                                                                    <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none" 
-                                                                        style="padding-top: 100%;" @dragstart="dragstart($event)" @dragend="fileDragging = null" 
+                                                                    <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none"
+                                                                        style="padding-top: 100%;" @dragstart="dragstart($event)" @dragend="fileDragging = null"
                                                                         :class="{'border-blue-600': fileDragging == index}" draggable="true" :data-index="index">
-                                                                        
+
                                                                         <button class="absolute top-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none" type="button" @click="remove(index)">
                                                                             <svg class="w-4 h-4 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                             </svg>
                                                                         </button>
-                                                                        
+
                                                                         {{-- <template x-if="files[index].type.includes('audio/')">
                                                                             <svg class="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
@@ -181,20 +181,20 @@
                                                                         <template x-if= " files[index]?.type || files[index]?.type.includes('image/')">
                                                                             <img class="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview" x-bind:src="loadFile(files[index])" />
                                                                         </template>
-                                                                        
+
                                                                         {{-- <template x-if="files[index].type.includes('video/')">
                                                                             <video class="absolute inset-0 object-cover w-full h-full border-4 border-white pointer-events-none preview">
                                                                                 <fileDragging x-bind:src="loadFile(files[index])" type="video/mp4">
                                                                             </video>
                                                                         </template> --}}
-                                                                        
+
                                                                         <div class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
                                                                             <span class="w-full font-bold text-gray-900 truncate" x-text="files[index]?.name">Loading</span>
                                                                             <span class="text-xs text-gray-900" x-text="humanFileSize(files[index]?.size)">...</span>
                                                                         </div>
-                                                                        
+
                                                                         <div class="absolute inset-0 z-40 transition-colors duration-300" @dragenter="dragenter($event)" @dragleave="fileDropping = null" :class="{'bg-blue-200 bg-opacity-80': fileDropping == index && fileDragging != index}">
-                                                                        
+
                                                                         </div>
                                                                     </div>
                                                                 </template>
@@ -275,8 +275,8 @@
                                         <!-- Buttom Back -->
                                         <div class="py-1">
                                             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                                                <a href="{{route('buyers.index')}}" 
-                                                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white 
+                                                <a href="{{route('buyers.index')}}"
+                                                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white
                                                                 uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300
                                                                 disabled:opacity-25 transition ml-4">
                                                     {{-- Icon <- --}}
@@ -288,7 +288,7 @@
                                         </div>
 
                                         <!-- Buttom Save -->
-                                        <button type="submit" 
+                                        <button type="submit"
                                             class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
                                             Save
                                         </button>
