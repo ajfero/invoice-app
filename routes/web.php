@@ -37,6 +37,7 @@ Route::middleware(['auth:sanctum',
 // This route group will contain controllers for the products.
 // Also create RESOURSE for routes in the group.
 Route::middleware('auth')->group(function () {
+
         Route::resource('/products', ProductController::class);
 
         Route::resource('/buyers', BuyerController::class);
@@ -47,5 +48,5 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/invoices/{invoice}/complete/', [InvoiceController::class, 'completeSend'])->name('invoices.complete');
 
-        Route::resource('/invoice-details', InvoicesDetailController::class);
+        Route::resource('/invoice-details', InvoiceDetailController::class);
 });

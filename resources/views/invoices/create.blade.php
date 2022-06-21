@@ -31,6 +31,7 @@
                                     <b> Buyer;</b><br>
                                     Insert the <i>name</i> of invoice in this case any name is Valid! just remember one thing, the data Type for names of invoices are <i> string</i>.
                                 </p>
+
                                 <!-- Type - Serie -->
                                 <p class="mt-1 text-sm text-gray-600">
                                     <br>
@@ -56,8 +57,8 @@
                                     <div class="grid grid-cols-3 gap-6">
 
                                         <!-- Name -->
-                                        <div class="col-span-6 sm:col-span-4">
-                                            <div>
+                                        <div style="display:grid; grid-template-columns:1fr 150px; align-items:center; gap:1rem;  "  class="grid col-span-6 sm:col-span-4 ">
+                                            <div >
                                                 <label class="block font-medium text-sm text-gray-700" for="buyer_id">
                                                     Buyer
                                                 </label>
@@ -65,14 +66,26 @@
                                                     <option value=""> Choose buyer </option>
                                                     @foreach ($buyers as $buyer)
                                                         <option value="{{ $buyer->id }}"> {{ $buyer->name }} </option>
-                                                    @endforeach
+                                                        @endforeach
+                                                        <option @class(['p-4', 'font-bold' => true])
+                                                            value="0">
+                                                            Create New Buyer
+                                                        </option>
                                                 </select>
-                                                </div>
                                                 @error('buyer_id')
                                                 <span class=" text-sm text-red-600" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
+                                            </div>
+
+                                            {{-- Button New Buyer --}}
+                                                <a href="{{ route('buyers.create') }}"
+                                                    style="width: 100%; text-align:center; "
+                                                    class=" text-center items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition mt-6 ">
+                                                    {{__('New Buyer')}}
+                                                </a>
+
                                         </div>
 
                                         <!-- Type - Serie -->
@@ -94,7 +107,7 @@
                                             </span>
                                             @enderror
                                         </div>
-
+a
                                     </div>
                                 </div>
                                 <!-- New Box for Buttoms -->
