@@ -71,7 +71,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        return view('invoices.create', compact('invoice'));
+        // return view('invoices.create', compact('invoice'));
     }
 
     /**
@@ -83,10 +83,10 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        $data = $request->validate();
-        $invoice->fill($data);
-        $invoice->save();
-        return redirect()->route('invoices.index')->with(['status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito
+        // $data = $request->validate();
+        // $invoice->fill($data);
+        // $invoice->save();
+        // return redirect()->route('invoices.index')->with(['status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito
     }
 
     /**

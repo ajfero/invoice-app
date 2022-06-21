@@ -48,10 +48,9 @@ class InvoiceDetailController extends Controller
         $data = $request->only(['product_id', 'invoice_id', 'price', 'quantity']);
         if ($data['price'] !== "") {
             $data['price'] = Product::find($data['product_id'])->price;
-
         }
-
         $data['total_product'] = $data['price'] * $data['quantity'];
+
 
         InvoiceDetail::create($data);
         return redirect()->route('invoices.add_products', ['invoice' => $data['invoice_id']])->with(['status' => 'Success', 'color' => 'green', 'message' => 'Buyer created successfully']);
@@ -97,8 +96,17 @@ class InvoiceDetailController extends Controller
      * @param  \App\Models\InvoiceDetail  $invoiceDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InvoiceDetail $invoiceDetail)
+    public function destroy(InvoiceDetail $invoiceDetail, Invoice $invoice)
     {
-        //
+        {
+            try {
+                $invoiceDetail->delete();
+                $result = ['status' => 'success', 'color' => 'green', 'message' => 'Deleted successfully'];
+            } catch (\Exception $e) {
+                $result = ['status' => 'error', 'message' => 'Buyer cannot be delete'];
+            }
+
+            return redirect()-> route('invoices.add_products', ['invoice'=> $invoiceDetail->invoice_id])->with($result);
+        }
     }
 }
