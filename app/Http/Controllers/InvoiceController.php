@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Buyer;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
+use App\Mail\InvoiceMail;
 use App\Http\Requests\InvoiceStoreRequest;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 
 class InvoiceController extends Controller
@@ -107,5 +110,16 @@ class InvoiceController extends Controller
         return redirect()->route('invoices.index')->with($result);
     }
 
+    public function completeSend(Request $request, Invoice $invoice)
+    {
+        // dd($invoice->buyer->email);
+
+        // $invoice->buyer->email = $request->email;
+        $details = InvoiceDetail::with('product')
+            ->where('invoice_id', $invoice->id)
+            ->get();
+        Mail::to($invoice->buyer->email)->queue(new InvoiceMail($invoice, $details));
+        // Mail::to($invoice->buyer->email)->send(new InvoiceMail($invoice));
+    }
 }
 

@@ -336,6 +336,5 @@
     </tr>
 </tfoot> --}}
 
-
-Payed
-New
+{{-- Payed
+New --}}
