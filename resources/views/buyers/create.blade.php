@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto sm:px-10 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="overflow-x-auto">
-                    <div class="min-w-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
+                    <div class="min-w-screen bg-gray-100 flex justify-center font-sans overflow-hidden">
                         <div wire:id="zofCsSIIav8OAYfxW38a" class="md:grid md:grid-cols-3 md:gap-6">
 
                             <!-- Text -->

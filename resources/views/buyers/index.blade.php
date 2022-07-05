@@ -38,7 +38,7 @@
                         </div>
                         <!--  -->
                         <div>
-                            <p class="inline-flex flex items-center text-sm font-semibold  rounded-md uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ml-3 mr-3 text-xs text-indigo-700 ">
+                            <p class="inline-flex  items-center font-semibold  rounded-md uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ml-3 mr-3 text-xs text-indigo-700 ">
                                 {{ session('message') }}
                             </p>
                         </div>

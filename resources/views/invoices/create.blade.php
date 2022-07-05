@@ -95,7 +95,7 @@
                                                 <label class="block font-medium text-sm text-gray-700" for="serie">
                                                     Type - Serie
                                                 </label>
-                                                <select name="serie" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300">
+                                                <select name="serie" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300">
                                                     <option value="">Choose option</option>
                                                     <option value="A">A</option>
                                                     <option value="B">B</option>

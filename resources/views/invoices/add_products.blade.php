@@ -163,7 +163,7 @@
                                     class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300">
                                     <option value="">Choose one</option>
                                     @foreach ($products as $product)
-                                    <option value="{{ $product->id }}"> {{ $product->name }} ({{ $product->price }}) </option>
+                                        <option value="{{ $product->id }}"> {{ $product->name }} ({{ $product->price }}) </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -180,7 +180,7 @@
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <input type="number" name="quantity" id="quantity" value="{{ old('quantity') }}"
-                                    class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300">
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300">
                             </div>
                             @error('quantity')
                             <span class=" text-sm text-red-600" role="alert">
@@ -195,7 +195,7 @@
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <input type="text" name="price" id="price" value="{{ old('price') }}"
-                                    class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300">
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300">
                             </div>
                             @error('price')
                             <span class=" text-sm text-red-600" role="alert">
