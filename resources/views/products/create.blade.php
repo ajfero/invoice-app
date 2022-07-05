@@ -3,12 +3,12 @@
     <!-- Nav Bar -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Create Product Dashboard') }}
         </h2>
     </x-slot>
 
     <!-- Box Create -->
-<div class="py-12">
+<div class="py-2">
     <div class="max-w-7xl mx-auto sm:px-10 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="overflow-x-auto">
@@ -134,7 +134,7 @@
                                                                 <svg class="w-6 h-6 mr-1 text-current-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                                 </svg>
-                                                                <p class="m-0">Drag your files here or click in this area</p>
+                                                                <p class="m-0"></p> <p class="m-0 inline"> <strong class="text-indigo-500"> Upload a file</strong> Drag your files here or click in this area</p>
                                                                 <p class="m-0"> PNG, JPG, GIF up to 1024KB. </p>
                                                             </div>
                                                         </div>
@@ -261,11 +261,11 @@
                                 <div class="flex items-center justify-end px-4 py-3 bg-gray-150 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
                                     <!-- Buttom Back -->
                                     <div class="py-1">
-                                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                        <div class="max-w-7xl mx-auto sm:px-6 ">
                                             <a href="{{route('products.index')}}"
-                                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white
-                                                            uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300
-                                                            disabled:opacity-25 transition ml-4">
+                                                class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white
+                                                    uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-indigo-400
+                                                    disabled:opacity-25 transition ">
                                                 {{-- Icon <- --}}
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="1 1 24 24" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" /> </svg>

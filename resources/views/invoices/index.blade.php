@@ -1,20 +1,31 @@
 <x-app-layout>
     {{-- Dashboard --}}
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight ">
-            {{ __('Invoices Dashboard') }}
-        </h2>
+        <div class="flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="">
+                <h1 class="font-semibold text-2xl text-gray-800 leading-tight">
+                    {{ __('Invoices Dashboard') }}
+                </h1>
+            </div>
+        {{-- Button New invoice --}}
+            <div class=" inline-flex " >
+                <a  class="order-last
+                    px-4 py-2 mr-8
+                    border border-transparent rounded-md
+                    font-semibold text-xs text-white uppercase
+                    tracking-widest
+                    bg-indigo-600
+                    hover:bg-gray-700 active:bg-gray-900
+                    focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-400 disabled:opacity-25 transition
+                    " href="{{ route('invoices.create') }}">
+                    {{ __('New invoice') }}
+                </a>
+            </div>
+        </div>
     </x-slot>
 
-    <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-
-        {{-- Button New invoice --}}
-        <div class=" inline-flex items-center max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-            <a href="{{ route('invoices.create') }}"
-                class="inline-flex items-center px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
-                {{ __('New invoice') }}
-            </a>
-        </div>
+    <div class=" items-center pt-2 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+        <h3 class=" inline ml-8 font-semibold text-xl text-gray-800 "> {{ __('List of invoices') }} </h3>
 
         {{-- Alert Message --}}
         @if (session('status'))
@@ -63,7 +74,7 @@
     </div>
 
     <!-- Box -->
-    <div class="py-6">
+    <div class="py-1">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <!-- Division for Table invoices -->
@@ -185,7 +196,7 @@
                         </tbody>
 
                     </table>
-                    <div class="py-1 px-4 text-gray-600 text-xs leading-normal">
+                    <div class="py-1 px-4 bg-gray-100 text-gray-600 text-xs leading-normal">
                         {{ $invoices->links() }}
                     </div>
                 </div>

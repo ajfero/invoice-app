@@ -1,23 +1,33 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Products Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-        
-        {{-- Button New Product --}}
-        <div class=" inline-flex items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('products.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
-                {{__('New Product')}}
-            </a>
+        <div class="flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="">
+                <h1 class="font-semibold text-2xl text-gray-800 leading-tight">
+                    {{ __(' Products Dashboard') }}
+                </h1>
+            </div>
+                {{-- Button New Product --}}
+            <div class=" inline-flex " >
+                <a  class="order-last
+                    px-4 py-2 mr-8
+                    border border-transparent rounded-md
+                    font-semibold text-xs text-white uppercase
+                    tracking-widest
+                    bg-indigo-600
+                    hover:bg-gray-700 active:bg-gray-900
+                    focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-400 disabled:opacity-25 transition
+                    " href="{{ route('products.create') }}">
+                    {{__('New Product')}}
+                </a>
+            </div>
         </div>
-
+    </x-slot>
+    <div class=" items-center pt-2 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+        <h3 class=" inline mb-1 ml-8 font-semibold text-xl text-gray-800 "> {{ __('List of products') }} </h3>
         {{-- Alert Message --}}
         @if (session('status'))
-            <div class="ml-auto mr-3 flex flex-col gap-2 w-auto border-b-2 border-indigo-700">
+            <div class=" inline mb-1 ml-auto mr-3 flex-col gap-2 w-auto border-b-2 border-indigo-700">
                 <div class="bg-blue-50 rounded-t text-blue-900 px-4 py-3" role="alert">
                     <div class="flex items-center">
                         <!-- ! -->
@@ -47,21 +57,20 @@
                 </div>
             </div>
         @endif
-
     </div>
 
     <!-- Table Products -->
-    <div class="py-6">
+    <div class="">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <!-- Division for Table Products -->
             <div class=" bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="bg-white shadow-md rounded">
                     <table class="min-w-max w-full table-auto">
-                        
+
                         <!-- Titles Table -->
                         <thead>
-                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <tr class="bg-indigo-500 text-white uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">ID</th>
                                 <th class="py-3 px-6 text-left">PRODUCT NAME</th>
                                 <th class="py-3 px-6 text-center">PRICE</th>
@@ -113,10 +122,10 @@
                                             <!-- En este caso englobaremos el boton de editar con la etiqueta a que conbertira la imagen en un link
                                                             Tambien vamos a decir que product sera igual al id de la variable product -->
                                             <a href="{{ route('products.edit', ['product'=> $product->id]) }}">
-                                                <!-- Para entedenr como obtenemos el "id" y se lo asiganmos al producto es porque nuestro Resource Routes of Products create the route 
+                                                <!-- Para entedenr como obtenemos el "id" y se lo asiganmos al producto es porque nuestro Resource Routes of Products create the route
                                                             using thir structure:
                                                             GET|HEAD        products/{product}/edit .......................... products.edit › ProductController@edit
-                                                            Cuando de foreachre recorrare todos los productos y le asignaremos una ruta de editar a cada uno de ellos. 
+                                                            Cuando de foreachre recorrare todos los productos y le asignaremos una ruta de editar a cada uno de ellos.
                                                         -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -130,7 +139,7 @@
                                             <form method="POST" action="{{ route('products.destroy', ['product'=> $product->id]) }}">
                                                 @csrf
                                                 {{  method_field("DELETE") }}
-                                            
+
                                                 <a href="{{ route('products.destroy', ['product'=> $product->id]) }}" onclick="event.preventDefault(); this.closest('form').submit();">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -138,13 +147,13 @@
                                                 </a>
                                             </form>
                                         </div>
-                                        
+
                                     </div>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
-                        
+
                     </table>
                 </div>
                 <div class="py-1 px-4 text-gray-600 text-xs leading-normal"  >
@@ -158,7 +167,7 @@
 
 
 
-    {{-- 
+    {{--
         Verifcar @click.prevent
         <form method="POST" action="{{ route('products.destroy', ['product'=>$product->id]) }}">
         @csrf

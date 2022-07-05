@@ -1,7 +1,7 @@
 const mix = require('laravel-mix');
 
 mix.browserSync({
-    proxy: 'invoicesapp.test'
+    proxy: 'invoices-app.test'
 });
 
 /*

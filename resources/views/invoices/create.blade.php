@@ -22,20 +22,21 @@
                                 <h1 class="text-lg font-medium text-gray-900">Create new invoice - Information</h1>
                                 <!-- Title -->
                                 <p class="mt-1 text-sm text-gray-600">
-                                    Insert invoices into your database information (Name, Price and Image).
+                                    In this instace we are create an Invoice (Buyer and Type Invoice).
                                 </p>
 
                                 <!-- Buyer -->
                                 <p class="mt-1 text-sm text-gray-600">
                                     <br>
                                     <b> Buyer;</b><br>
-                                    Insert the <i>name</i> of invoice in this case any name is Valid! just remember one thing, the data Type for names of invoices are <i> string</i>.
+                                    Select the <i>name</i> of Buyer for assignament a client for invoice!
                                 </p>
 
                                 <!-- Type - Serie -->
                                 <p class="mt-1 text-sm text-gray-600">
                                     <br>
                                     <b> Type - Serie;</b><br>
+                                    Select a type of invoice for create.
                                     Put the <i>price</i> for you invoice but remember don't be expensive! the data Type for invoices prices are <i> numeric</i>.
                                 </p>
 
@@ -111,11 +112,10 @@
                                     </div>
                                 </div>
                                 <!-- New Box for Buttoms -->
-                                <div class="flex items-center justify-end px-4 py-3 bg-gray-150 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-
+                                <div class="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
                                     <!-- Buttom Back -->
                                     <div class="py-1">
-                                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                        <div class="max-w-7xl mx-auto sm:px-6 ">
                                             <a href="{{route('invoices.index')}}"
                                                         class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white
                                                             uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300

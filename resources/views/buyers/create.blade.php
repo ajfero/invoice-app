@@ -8,7 +8,7 @@
     </x-slot>
 
     <!-- Box -->
-    <div class="py-12">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-10 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="overflow-x-auto">
@@ -27,7 +27,7 @@
                                     <!-- Name -->
                                     <p class="mt-1 text-sm text-gray-600">
                                         <br>
-                                        <b> Name;</b><br>
+                                        <b> Full Name;</b><br>
                                         Insert the <i>name</i> of buyer in this case any name is Valid! just remember one thing, the data Type for names of buyers are <i> string</i>.
                                     </p>
                                     <!-- Document -->
@@ -72,7 +72,7 @@
                                                     <label class="block font-medium text-sm text-gray-350" for="name">
                                                         Full Name
                                                     </label>
-                                                    <input type="text" name="name" id="name" value="{{ old('name', $buyer->name) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full " wire:model.defer="state.name" autocomplete="name">
+                                                    <input type="text" name="name" id="name" value="{{ old('name', $buyer->name) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block w-full " wire:model.defer="state.name" autocomplete="name">
                                                 </div>
                                                 @error('name')
                                                 <span class=" text-sm text-red-600" role="alert">
@@ -87,7 +87,7 @@
                                                     <label class="block font-medium text-sm text-gray-700" for="price">
                                                         Document
                                                     </label>
-                                                    <input type="text" name="nif" id="nif" value="{{ old('price', $buyer->nif) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                                                    <input type="text" name="nif" id="nif" value="{{ old('price', $buyer->nif) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block w-full">
                                                 </div>
                                                 @error('nif')
                                                 <span class=" text-sm text-red-600" role="alert">
@@ -102,7 +102,7 @@
                                                     <label class="block font-medium text-sm text-gray-700" for="price">
                                                         Email
                                                     </label>
-                                                    <input type="email" name="email" id="email" value="{{ old('email', $buyer->email) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                                                    <input type="email" name="email" id="email" value="{{ old('email', $buyer->email) }}" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block w-full">
                                                 </div>
                                                 @error('price')
                                                 <span class=" text-sm text-red-600" role="alert">
@@ -115,14 +115,14 @@
                                             <div class="flexcol-span-6 sm:col-span-4">
                                                 <div>
                                                     {{-- Definomos que si el buyero tiene un "id" debe tener una imagen por lo cual vamos a mostrarla --}}
-                                                    <label class="block font-medium text-sm text-gray-700" for="image">
+                                                    <label class=" font-medium text-sm text-gray-700" for="image">
                                                         Photo
                                                     </label>
                                                     @if($buyer->id)
                                                     <div class="pb-4" >
                                                         <img class="inline w-16 h-16 rounded-full" src="{{ asset($buyer->img_url) }}" />
                                                         <input type="file"
-                                                        class="inline-flex items-center ml-2 px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
+                                                        class="inline-flex items-center ml-2 px-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
                                                         wire:loading.attr="disabled" wire:target="image"
                                                         id="image" name="image" accept="*"
                                                         @change="addFiles($event)"
@@ -144,11 +144,11 @@
                                                                 @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
                                                                 @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
                                                                 title="" />
-                                                            <div class="flex flex-col items-center justify-center py-10 text-center">
+                                                            <div class="flex flex-col items-center justify-center py-6 text-center">
                                                                 <svg class="w-6 h-6 mr-1 text-current-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                                 </svg>
-                                                                <p class="m-0">Drag your files here or click in this area</p>
+                                                                <p class="m-0"> <strong class="text-indigo-500"> Upload a file</strong> Drag your files here or click in this area</p>
                                                                 <p class="m-0"> PNG, JPG, GIF up to 1024KB. </p>
                                                             </div>
                                                         </div>
@@ -274,11 +274,11 @@
 
                                         <!-- Buttom Back -->
                                         <div class="py-1">
-                                            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                            <div class="max-w-7xl mx-auto sm:px-6">
                                                 <a href="{{route('buyers.index')}}"
-                                                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white
-                                                                uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300
-                                                                disabled:opacity-25 transition ml-4">
+                                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white
+                                                        uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-indigo-400
+                                                        disabled:opacity-25 transition ml-4"">
                                                     {{-- Icon <- --}}
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="1 1 24 24" stroke="currentColor" stroke-width="2">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" /> </svg>
@@ -289,7 +289,7 @@
 
                                         <!-- Buttom Save -->
                                         <button type="submit"
-                                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
+                                            class="inline-flex items-center px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" wire:loading.attr="disabled" wire:target="photo">
                                             Save
                                         </button>
 

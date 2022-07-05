@@ -1,20 +1,31 @@
 <x-app-layout>
     <!-- Dashboard -->
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-             {{ __('Buyers Dashboard') }}
-        </h2>
+        <div class="flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="">
+                <h1 class="font-semibold text-2xl text-gray-800 leading-tight">
+                    {{ __('Buyers Dashboard') }}
+                </h1>
+            </div>
+        {{-- Button New Buyer --}}
+            <div class=" inline-flex " >
+                <a  class="order-last
+                    px-4 py-2 mr-8
+                    border border-transparent rounded-md
+                    font-semibold text-xs text-white uppercase
+                    tracking-widest
+                    bg-indigo-600
+                    hover:bg-gray-700 active:bg-gray-900
+                    focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-400 disabled:opacity-25 transition
+                    " href="{{ route('buyers.create') }}">
+                    {{__('New Buyer')}}
+                </a>
+            </div>
+        </div>
     </x-slot>
 
-    <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-
-        {{-- Button New Buyer --}}
-        <div class=" inline-flex items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('buyers.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-3 mr-3">
-                {{__('New Buyer')}}
-            </a>
-        </div>
-
+    <div class="pt-2 items-center max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+        <h3 class="ml-8 font-semibold text-xl text-gray-800 "> {{ __('List of buyers') }} </h3>
         {{-- Alert Message --}}
         @if (session('status'))
             <div class="ml-auto mr-3 flex flex-col gap-2 w-auto border-b-2 border-indigo-700">
@@ -51,7 +62,7 @@
     </div>
 
     <!-- Box -->
-    <div class="py-6">
+    <div class="py-1">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <!-- Division for Table Buyers -->
@@ -61,7 +72,7 @@
 
                         <!-- Titles Table -->
                         <thead>
-                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <tr class="bg-gray-300 text-gray-600 uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">#ID</th>
                                 <th class="py-3 px-6 text-center">BUYER</th>
                                 <th class="py-3 px-6 text-center">DOCUMENT</th>
