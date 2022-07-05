@@ -64,7 +64,8 @@ class InvoiceDetailController extends Controller
      */
     public function show(InvoiceDetail $invoiceDetail)
     {
-        //
+        // $search = $request->input('search');
+        // return view('invoices.add_products',['invoice'=> $search] );
     }
 
     /**

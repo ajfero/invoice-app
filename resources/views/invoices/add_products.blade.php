@@ -160,7 +160,7 @@
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <select name="product_id"
-                                    class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300">
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300">
                                     <option value="">Choose one</option>
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}"> {{ $product->name }} ({{ $product->price }}) </option>
