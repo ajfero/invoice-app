@@ -119,17 +119,17 @@
                                                         Photo
                                                     </label>
                                                     @if($buyer->id)
-                                                    <div class="pb-4" >
-                                                        <img class="inline w-16 h-16 rounded-full" src="{{ asset($buyer->img_url) }}" />
-                                                        <input type="file"
-                                                        class="inline-flex items-center ml-2 px-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
-                                                        wire:loading.attr="disabled" wire:target="image"
-                                                        id="image" name="image" accept="*"
-                                                        @change="addFiles($event)"
-                                                        title=""
-                                                        />
-                                                    </div>
-                                                @endif
+                                                        <div class="pb-4" >
+                                                            <img class="inline w-16 h-16 rounded-full" src="{{ asset($buyer->img_url) }}" />
+                                                            <input type="file"
+                                                            class="inline-flex items-center ml-2 px-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
+                                                            wire:loading.attr="disabled" wire:target="image"
+                                                            id="image" name="image" accept="*"
+                                                            @change="addFiles($event)"
+                                                            title=""
+                                                            />
+                                                        </div>
+                                                    @endif
                                                     <br>
                                                 </div>
                                                 <!-- Stile Drag & Drop  -->

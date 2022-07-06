@@ -27,7 +27,7 @@ class BuyerStoreRequest extends FormRequest
             'name' => 'required|string|max:255',
             'nif' => 'required|numeric',
             'email' => 'required|email',
-            // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ];
     }
 }

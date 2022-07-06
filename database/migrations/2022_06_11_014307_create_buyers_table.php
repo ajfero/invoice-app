@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nif', 20);
             $table->string('name', 250);
             $table->string('email', 250);
+            $table->string('img_url')->nullable();
             $table->timestamps();
         });
     }
