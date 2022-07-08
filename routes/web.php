@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// http://localhost:3000/linkstorage
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
