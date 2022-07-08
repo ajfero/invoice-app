@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 // http://localhost:3000/storage-link
 // http://http://ajfero-invoicesapp.herokuapp.com/storage-link
-Route::get('/storage-link', function () {
-    Artisan::call('storage:link');
-});
+// Route::get('/storage-link', function () {
+//     Artisan::call('storage:link');
+// });
 
 Route::get('/', function () {
     return view('welcome');
