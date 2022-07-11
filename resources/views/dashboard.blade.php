@@ -7,7 +7,7 @@
                     {{ __('Main dashboard:') }}
                 </h1>
                 <h1 class=" inline font-bold text-2xl text-indigo-500 leading-tight">
-                    {{ __('InvoiceApp ') }}
+                    {{ __('InvoiceApp') }}
                 </h1>
             </div>
 
