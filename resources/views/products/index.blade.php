@@ -96,7 +96,7 @@
                                     <div class="flex items-center">
                                         <div class="mr-2">
                                             {{-- Nos traermos una imagen segun la url de la base de datos --}}
-                                            <img class="w-8 h-8 rounded-full" src="{{ asset($product->img_url) }}" />
+                                            <img class="w-10 h-10 rounded-full" src="{{ asset($product->img_url) }}" />
                                             {{-- <img class="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg"/> --}}
                                         </div>
                                         <span>{{ $product->name }}</span>

@@ -99,7 +99,7 @@
                                     <div class="flex items-center">
                                         <div class="mr-2">
                                             {{-- <img class="w-8 h-8 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg"/> --}}
-                                            <img class="w-8 h-8 rounded-full" src="{{ asset($buyer->img_url) }}" />
+                                            <img class="w-10 h-10 rounded-full" src="{{ asset($buyer->img_url) }}" />
                                         </div>
                                         <div>
                                             <p class="font-semibold text-black">{{ $buyer->name }}</p>

@@ -12,3 +12,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+# Modificaciones
+# Se elmina la carpeta .env para enviar las variables de entorno al desarrollo
+#

@@ -4,7 +4,7 @@
         <div class="grid grid-cols-3 gap-4 items-center">
             <div class=" col-span-2"  >
                 <h1 class=" inline font-semibold ml-10 text-2xl text-gray-800 leading-tight">
-                    {{ __('Main dashboard:') }}
+                    {{ __('Main Kashboard - ') }}
                 </h1>
                 <h1 class=" inline font-bold text-2xl text-indigo-500 leading-tight">
                     {{ __('InvoiceApp') }}
