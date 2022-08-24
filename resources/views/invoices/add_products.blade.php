@@ -191,7 +191,7 @@
 
                         <div>
                             <label for="price" class="block text-sm font-medium text-gray-700">
-                                Price (Leave blank to not modify)
+                                Update Price (Leave blank to not modify)
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <input type="text" name="price" id="price" value="{{ old('price') }}"

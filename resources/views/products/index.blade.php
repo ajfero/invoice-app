@@ -23,6 +23,7 @@
             </div>
         </div>
     </x-slot>
+
     <div class=" items-center pt-2 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
         <h3 class=" inline mb-1 ml-8 font-semibold text-xl text-gray-800 "> {{ __('List of products') }} </h3>
         {{-- Alert Message --}}
@@ -37,7 +38,7 @@
                         </div>
                         <!--  -->
                         <div>
-                            <p class="inline-flex flex items-center text-sm font-semibold  rounded-md uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ml-3 mr-3 text-xs text-indigo-700 ">
+                            <p class=" flex items-center  font-semibold  rounded-md uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ml-3 mr-3 text-xs text-indigo-700 ">
                                 {{ session('message') }}
                             </p>
                         </div>

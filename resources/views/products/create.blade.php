@@ -12,8 +12,8 @@
     <div class="max-w-7xl mx-auto sm:px-10 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="overflow-x-auto">
-                <div class="min-w-screen bg-gray-100 flex justify-center bg-gray-100 font-sans overflow-hidden">
-                    <div wire:id="zofCsSIIav8OAYfxW38a" class="md:grid md:grid-cols-3 md:gap-6">
+                <div class="min-w-screen bg-gray-100 flex justify-center font-sans overflow-hidden">
+                    <div wire:id="" class="md:grid md:grid-cols-3 md:gap-6">
 
                         <!-- Text -->
                         <div class="md:col-span-1 flex justify-between">
@@ -108,13 +108,6 @@
                                                 @if($product->id)
                                                     <div class="pb-4" >
                                                         <img class="inline w-16 h-16 rounded-full" src="{{ asset($product->img_url) }}" />
-                                                        <input type="file"
-                                                        class="inline-flex items-center ml-2 px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
-                                                        wire:loading.attr="disabled" wire:target="image"
-                                                        id="changeImage" name="image" accept="*"
-                                                        @change="addFiles($event)"
-                                                        title=""
-                                                        />
                                                     </div>
                                                 @endif
                                                 {{-- @else --}}
@@ -189,69 +182,69 @@
                                                     </div>
                                                 </div>
 
-                                                    <!-- Function -->
-                                                    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-                                                    <script src="https://unpkg.com/create-file-list"></script>
-                                                    <script>
-                                                        function dataFileDnD() {
-                                                            return {
-                                                                files: []
-                                                                , fileDragging: null
-                                                                , fileDropping: null
-                                                                , humanFileSize(size) {
-                                                                    const i = Math.floor(Math.log(size) / Math.log(1024));
-                                                                    return (
-                                                                        (size / Math.pow(1024, i)).toFixed(2) * 1 +
-                                                                        " " + ["B", "kB", "MB", "GB", "TB"][i]
-                                                                    );
-                                                                }
-                                                                , remove(index) {
-                                                                    let files = [...this.files];
-                                                                    files.splice(index, 1);
-                                                                    this.files = createFileList(files);
-                                                                }
-                                                                , drop(e) {
-                                                                    let removed, add;
-                                                                    let files = [...this.files];
+                                                <!-- Function -->
+                                                <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+                                                <script src="https://unpkg.com/create-file-list"></script>
+                                                <script>
+                                                    function dataFileDnD() {
+                                                        return {
+                                                            files: []
+                                                            , fileDragging: null
+                                                            , fileDropping: null
+                                                            , humanFileSize(size) {
+                                                                const i = Math.floor(Math.log(size) / Math.log(1024));
+                                                                return (
+                                                                    (size / Math.pow(1024, i)).toFixed(2) * 1 +
+                                                                    " " + ["B", "kB", "MB", "GB", "TB"][i]
+                                                                );
+                                                            }
+                                                            , remove(index) {
+                                                                let files = [...this.files];
+                                                                files.splice(index, 1);
+                                                                this.files = createFileList(files);
+                                                            }
+                                                            , drop(e) {
+                                                                let removed, add;
+                                                                let files = [...this.files];
 
-                                                                    removed = files.splice(this.fileDragging, 1);
-                                                                    files.splice(this.fileDropping, 0, ...removed);
+                                                                removed = files.splice(this.fileDragging, 1);
+                                                                files.splice(this.fileDropping, 0, ...removed);
 
-                                                                    this.files = createFileList(files);
+                                                                this.files = createFileList(files);
 
-                                                                    this.fileDropping = null;
-                                                                    this.fileDragging = null;
-                                                                }
-                                                                , dragenter(e) {
-                                                                    let targetElem = e.target.closest("[draggable]");
+                                                                this.fileDropping = null;
+                                                                this.fileDragging = null;
+                                                            }
+                                                            , dragenter(e) {
+                                                                let targetElem = e.target.closest("[draggable]");
 
-                                                                    this.fileDropping = targetElem.getAttribute("data-index");
-                                                                }
-                                                                , dragstart(e) {
-                                                                    this.fileDragging = e.target
-                                                                        .closest("[draggable]")
-                                                                        .getAttribute("data-index");
-                                                                    e.dataTransfer.effectAllowed = "move";
-                                                                }
-                                                                , loadFile(file) {
-                                                                    const preview = document.querySelectorAll(".preview");
-                                                                    const blobUrl = URL.createObjectURL(file);
+                                                                this.fileDropping = targetElem.getAttribute("data-index");
+                                                            }
+                                                            , dragstart(e) {
+                                                                this.fileDragging = e.target
+                                                                    .closest("[draggable]")
+                                                                    .getAttribute("data-index");
+                                                                e.dataTransfer.effectAllowed = "move";
+                                                            }
+                                                            , loadFile(file) {
+                                                                const preview = document.querySelectorAll(".preview");
+                                                                const blobUrl = URL.createObjectURL(file);
 
-                                                                    preview.forEach(elem => {
-                                                                        elem.onload = () => {
-                                                                            URL.revokeObjectURL(elem.src); // free memory
-                                                                        };
-                                                                    });
+                                                                preview.forEach(elem => {
+                                                                    elem.onload = () => {
+                                                                        URL.revokeObjectURL(elem.src); // free memory
+                                                                    };
+                                                                });
 
-                                                                    return blobUrl;
-                                                                }
-                                                                , addFiles(e) {
-                                                                    const files = createFileList([...this.files], [...e.target.files]);
-                                                                    this.files = files;
-                                                                }
-                                                            };
-                                                        }
-                                                    </script>
+                                                                return blobUrl;
+                                                            }
+                                                            , addFiles(e) {
+                                                                const files = createFileList([...this.files], [...e.target.files]);
+                                                                this.files = files;
+                                                            }
+                                                        };
+                                                    }
+                                                </script>
                                                 {{-- @endif --}}
                                         </div>
                                     </div>
