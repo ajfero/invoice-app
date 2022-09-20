@@ -55,3 +55,6 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/invoice-details', InvoiceDetailController::class);
 });
+
+	// Route::match( [ 'get', 'post' ], '/welcome', [ SubscriberController::class,'index' ]);
+	// Route::post( '/welcome/{email}', [ SubscriberController::class, 'store' ])->name( 'newSubscribe' );
