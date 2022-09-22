@@ -1,9 +1,9 @@
 /node_modules
 /public/hot
 /medias
-# /storage/*.key
+/storage/*.key
 /vendor
-# .env
+.env
 .env.backup
 .phpunit.result.cache
 Homestead.json
@@ -12,6 +12,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-# Modificaciones
-# Se elmina la carpeta .env para enviar las variables de entorno al desarrollo
-#
+
