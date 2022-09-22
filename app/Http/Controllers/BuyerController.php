@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buyer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BuyerController extends Controller
 {
@@ -40,7 +41,7 @@ class BuyerController extends Controller
     {
         $data = $request->all();  // Creamos variable y le asignamos el valor de la variable request
         if ($request->hasFile('image')) { //  Definimos si reuquest tiene un archivo con nombre image que viene del input
-            $image_path = $request->file('image')->store('medias');  // Definomos la variable path para asignarle de rrequest el archivo image y que lo almacene en "medias"
+            $image_path = Cloudinary::upload($request->file('image')->getRealPath(),['folder'=>'invoiceApp/img/buyers'])->getSecurePath();  // Definomos la variable path para asignarle de request el archivo image y que lo almacene en "medias"
             $data['img_url'] = $image_path; // Asignamos el valor de la variable path a la variable img_url
             // Esto nos devolvera la ruta de la imagen para ser usada en la base de datos
         }
@@ -82,8 +83,8 @@ class BuyerController extends Controller
     {
         $data = $request->all();  // Recibimos todo
         if ($request->hasFile('image')) {
-            Storage::delete($buyer->img_url); // Eliminamos la imagen anterior
-            $image_path = $request->file('image')->store('medias');  // Definomos la variable path para asignarle de rrequest el archivo image y que lo almacene en "medias"
+            Cloudinary::destroy($buyer->img_url);
+            $image_path = Cloudinary::upload($request->file('image')->getRealPath(),['folder'=>'invoiceApp/img/buyers'])->getSecurePath();  // Definomos la variable path para asignarle de rrequest el archivo image y que lo almacene en "medias"
             $data['img_url'] = $image_path; // Asignamos el valor de la variable path a la variable img_url
             // Esto nos devolvera la ruta de la imagen para ser usada en la base de datos
         }
