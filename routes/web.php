@@ -38,9 +38,6 @@ Route::middleware(['auth:sanctum',
 });
 
 // Create a new route group for the Products.
-// Aplicate the middelware "auth" to all the routes in the group.
-// This route group will contain controllers for the products.
-// Also create RESOURSE for routes in the group.
 Route::middleware('auth')->group(function () {
 
         Route::resource('/products', ProductController::class);
@@ -55,6 +52,3 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/invoice-details', InvoiceDetailController::class);
 });
-
-	// Route::match( [ 'get', 'post' ], '/welcome', [ SubscriberController::class,'index' ]);
-	// Route::post( '/welcome/{email}', [ SubscriberController::class, 'store' ])->name( 'newSubscribe' );

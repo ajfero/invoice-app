@@ -20,9 +20,6 @@ class ProductController extends Controller
         // Create instance of the Product model.
         $products = Product::paginate(5);
         return view('products.index', compact('products'));
-        // Return the view with the products.
-        // compact() return data to the vire index
-        // Esto se returna tambien porque haremos la evaluacion para la edicion y si no esta el producto arrojara error.
     }
 
     /**
@@ -32,11 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // Define $product como variable e instaciamos el modelo Product. Con su fatory method create()
-        // Cremos este objeto para mostrar los datos en el formulario update.
         $product = new Product();
         return view('products.create', compact('product'));
-        // Return the view with the products.
     }
 
     /**
@@ -57,7 +51,6 @@ class ProductController extends Controller
         }
         Product::create($data); // Creamos el producto con los datos de la variable data
         return redirect()->route('products.index')->with(['status'=>'success', 'color'=>'green' , 'message'=> 'Product created successfully']); // Redirecionamos a la ruta products.index con un mensaje de exito
-        // return redirect()->route('products.index')->with('success', 'Product created successfully'); // Redirecionamos a la ruta products.index con un mensaje de exito
     }
 
     /**
@@ -79,10 +72,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // Usamo el mismo formulario y usamos el mismo id del producto que queremos editar segun sea el id
-        // En la variable que ingreso en el funcion haremos la busqueda del id como tal. y podremos hacer la edicion dado que tiene el mismo formulario.
         return view('products.create', compact('product'));
-        // Se modifica el formulario para evaluar si editar p crear.
     }
 
     /**

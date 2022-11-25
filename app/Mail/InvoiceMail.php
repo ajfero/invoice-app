@@ -32,11 +32,6 @@ class InvoiceMail extends Mailable
      */
     public function build()
     {
-        // return $this->view('view.name');
-        // return $this->view('mails.invoice', ['invoice' => $this->invoice, 'details' => $this->details]);
-        // In this view is created  a link to the invoice for rendder and create content mail
-        // Rename
-
         $invoice = $this->invoice;
         $details = $this->details;
         return $this->view('mails.invoice', compact('invoice', 'details'));

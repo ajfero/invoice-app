@@ -52,8 +52,6 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::create($request->validated());
         return redirect()->route('invoices.add_products', ['invoice' => $invoice->id]); // Redirecionamos a la ruta invoices.index con un mensaje de exito    }
-        // return redirect()->route('invoices.add_products', ['invoice' => $invoice->id])->with(['status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito    }
-        // return redirect()->route('invoices.add_products')->with(["invoice" => $invoice->id, 'status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito    }
     }
     /**
      * Display the specified resource.
@@ -74,7 +72,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        // return view('invoices.create', compact('invoice'));
+        //
     }
 
     /**
@@ -86,10 +84,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        // $data = $request->validate();
-        // $invoice->fill($data);
-        // $invoice->save();
-        // return redirect()->route('invoices.index')->with(['status'=>'success', 'message'=> 'invoice created successfully']); // Redirecionamos a la ruta invoices.index con un mensaje de exito
+        //
     }
 
     /**
@@ -112,14 +107,10 @@ class InvoiceController extends Controller
 
     public function completeSend(Request $request, Invoice $invoice)
     {
-        // dd($invoice->buyer->email);
-
-        // $invoice->buyer->email = $request->email;
         $details = InvoiceDetail::with('product')
             ->where('invoice_id', $invoice->id)
             ->get();
         Mail::to($invoice->buyer->email)->queue(new InvoiceMail($invoice, $details));
-        // Mail::to($invoice->buyer->email)->send(new InvoiceMail($invoice));
     }
 }
 
